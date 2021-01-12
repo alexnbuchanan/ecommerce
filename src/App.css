@@ -1,0 +1,45 @@
+.App {
+  text-align: center;
+}
+
+.Nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 10vh;
+  background-color: yellow
+}
+
+.nav-links {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  background-color: orange;
+}
+
+.itemSort {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: orange;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 1em;
+  grid-row-gap: 3em;
+}
+
+.productStyle {
+  background: white;
+}
+
+.productImage{
+  height: 30vmin;
+}
