@@ -1,31 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import './../App.css';
+import * as ReactBootStrap from 'react-bootstrap';
 
 function Shop() {
-useEffect(() => {
+
+const [products, setProducts] = useState([]);
+const [filterProducts, setFilteredProducts] = useState([]);
+const [item, setItem] = useState('');
+const [currentSort, setCurrentSort] = useState('');
+const [loading, setLoading] = useState(false);
+
+useEffect(async () => {
   fetchItems();
 }, [])
 
-const [products, setProducts] = useState([])
-
 const fetchItems = async () => {
   const data = await fetch('https://fakestoreapi.com/products');
-
   const items = await data.json();
   setProducts(items)
+  setLoading(true)
 }
-
 function priceUSD(change){
   return change.toFixed(2)
 }
 
-const [item, setItem] = useState('')
+useEffect(() => {
+  const filteredItems = products.filter((a) => {
+    if (item === '') {return a} else {return a.category === item}
+  });
+  setFilteredProducts(filteredItems);
+}, [item, products])
 
-const filteredItems = products.filter((a) => {
-  if (item === '') {return a} else {return a.category === item}
-})
+ useEffect(() => {
+  if (currentSort === '') {
+    return
+  }
+  const sortedItems = filterProducts.sort((a, b) => {
+    return currentSort === 'ASE' ? a.price - b.price : b.price - a.price
+  });
+  setFilteredProducts([...sortedItems]);
+}, [currentSort])
 
-console.log(filteredItems)
 
     return (
       <div>
@@ -39,18 +54,18 @@ console.log(filteredItems)
 
         <div className="itemSort">
           <p>Order by price</p>
-          <p>Highest</p>
-          <p>Lowest</p>
+          <p onClick={() => setCurrentSort('DESC')}>Highest</p>
+          <p onClick={() => setCurrentSort('ASE')}>Lowest</p>
         </div>
 
           <div className="gridContainer">
-            {filteredItems.map((a, index) => (
-              <div className="productStyle">
-                <img key={index} src={a.image} className="productImage"></img>
-                <p>{a.title}</p>
-                <p>${priceUSD(a.price)}</p>
-              </div>
-            ))}
+            {loading ? (filterProducts.map((a, index) => (
+                        <div key={index} className="productStyle">
+                          <img src={a.image} className="productImage"></img>
+                          <p>{a.title}</p>
+                          <p>${priceUSD(a.price)}</p>
+                        </div>
+                      ))) : (<ReactBootStrap.Spinner className="spinner" animation="border" />)}
           </div>
 
       </div>
