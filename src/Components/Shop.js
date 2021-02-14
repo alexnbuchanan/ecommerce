@@ -10,7 +10,7 @@ const [filterProducts, setFilteredProducts] = useState([]);
 const [item, setItem] = useState('');
 const [currentSort, setCurrentSort] = useState('');
 const [loading, setLoading] = useState(false);
-console.log(products)
+
 useEffect(async () => {
   fetchItems();
 }, [])
@@ -42,7 +42,6 @@ useEffect(() => {
   setFilteredProducts([...sortedItems]);
 }, [currentSort])
 
-console.log(products)
     return (
         <div>
           <div className="itemSort">

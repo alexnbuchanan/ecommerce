@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import './../App.css';
 import * as ReactBootStrap from 'react-bootstrap';
 
@@ -18,11 +19,29 @@ function Item(props) {
     const items = await data.json();
     setProduct(items)
     setLoading(true)
-    setCost(items.price)
+    setCost(items.price.toFixed(2))
   }
 
   function priceUSD(change){
     return change.toFixed(2)
+  }
+
+  function saveProduct(item) {
+    const itemData = JSON.parse(localStorage.getItem('product')) || [];
+    var obj = item;
+    var duplicate = false;
+    Object.assign(obj, {quantity: quantity})
+
+    for (let i = 0; i < itemData.length; i++){
+      if (itemData[i].title === obj.title){
+        itemData[i]['quantity'] = itemData[i]['quantity'] + obj['quantity'];
+        duplicate = true
+      }
+    }
+
+    if (!duplicate){itemData.push(obj)}
+    localStorage.setItem('product', JSON.stringify(itemData));
+    duplicate = false
   }
 
   useEffect(() => {
@@ -44,12 +63,16 @@ function Item(props) {
                             <div className="quantity">
                               <button className="btn minus-btn" type="button"
                                 onClick={quantity > 1 ? () => setQuantity(quantity - 1) : null}>-</button>
-                              <input type="text" id="quantity" value={quantity}/>
+                              <input type="text" id="quantity" placeholder={quantity}/>
                               <button className="btn plus-btn" type="button"
                                 onClick={() => setQuantity(quantity + 1)}>+</button>
                             </div>
 
-                            <button type="button">Add to shopping cart ${cost}</button>
+                            <Link to={`/Cart/`}>
+                              <button onClick={() => saveProduct(product)} type="button">
+                                Add to shopping cart ${cost}
+                              </button>
+                            </Link>
 
                           </div>
                       ): (<ReactBootStrap.Spinner className="spinner" animation="border" />)
