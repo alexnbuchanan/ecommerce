@@ -63,11 +63,11 @@ const CheckoutForm = ({backStep}) => {
 
 function PaymentForm({backStep}) {
   return (
-    <Elements stripe={stripePromise}>
-      <Review />
-      <br /><br />
-      <CheckoutForm />
-    </Elements>
+      <Elements stripe={stripePromise}>
+        <Review />
+        <br /><br />
+        <CheckoutForm />
+      </Elements>
   );
 }
 
