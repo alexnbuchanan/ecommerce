@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Typography, List, ListItem, ListItemText} from '@material-ui/core';
+// import getTotal from './../../helpers/getTotal';
+import { getTotal } from './../../helpers/helperTools';
 
 function Review(){
 
@@ -10,14 +12,6 @@ function Review(){
     setProducts(storageItems || []);
   }, []);
 
-  function totalPrice(storageItems, stringToIntTotal){
-    const totalPriceHolder = []
-    storageItems.map((a, index) => {
-      const totalPrice = a.price * a.quantity;
-      totalPriceHolder.push(parseInt(totalPrice, 10))
-    })
-     return totalPriceHolder.reduce((a, b) => a + b, 0).toFixed(2)
-  }
 
   return (
     <div>
@@ -32,7 +26,7 @@ function Review(){
           <ListItem style={{padding: '10px 0'}}>
             <ListItemText primary="Total" />
             <Typography variant="subtitle1" style={{fontWeight: 700}}>
-              <p>${totalPrice(products)}</p>
+              <p>${getTotal(products)}</p>
             </Typography>
           </ListItem>
 

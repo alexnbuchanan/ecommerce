@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import './../App.css';
 import * as ReactBootStrap from 'react-bootstrap';
+//import saveProducts from '../helpers/saveProducts';
+import { saveProducts } from '../helpers/helperTools';
+// import { save, get } from '../helpers/fns';
+
 
 function Item(props) {
   const [product, setProduct] = useState([]);
@@ -30,7 +34,7 @@ function Item(props) {
     const itemData = JSON.parse(localStorage.getItem('product')) || [];
     var obj = item;
     var duplicate = false;
-    Object.assign(obj, {quantity: quantity})
+    Object.assign(obj, {quantity})
 
     for (let i = 0; i < itemData.length; i++){
       if (itemData[i].title === obj.title){
@@ -40,8 +44,13 @@ function Item(props) {
     }
 
     if (!duplicate){itemData.push(obj)}
-    localStorage.setItem('product', JSON.stringify(itemData));
+    saveProducts(itemData);
+    // localStorage.setItem('product', JSON.stringify(itemData));
     duplicate = false
+
+    // const updatedQuantity = props.qty.quantity + quantity
+    // localStorage.setItem('quantity', JSON.stringify({ quantity: updatedQuantity }))
+    // props.setQty({ quantity: updatedQuantity })
   }
 
   useEffect(() => {

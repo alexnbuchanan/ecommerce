@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import {Typography, Button, Divider} from '@material-ui/core';
 import {Elements, CardElement, ElementsConsumer, useStripe, useElements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
+import axios from 'axios';
 
 import Review from './Review';
 
 const stripePromise = loadStripe('pk_test_51IIpDBDhRieDnekpNQKifP6DUbpo0IDdqyrO9fzTX0xwPNhjahlTxLfVRXkMBUsSIffBcGdrz4KSySANd6ozSUMM00E6jtTqGV');
-
 
 const CheckoutForm = ({backStep}) => {
   const stripe = useStripe();
@@ -21,15 +21,18 @@ const CheckoutForm = ({backStep}) => {
 
     const cardElement = elements.getElement(CardElement);
 
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
+    const { error, token } = await stripe.createToken(cardElement);
+
+    const order = await axios.post('http://localhost:7000/api/stripe/charge', {
+      amount: 200,
+      source: token.id,
+      receipt_email: 'customer@example.com',
     });
 
     if (error) {
       console.log('[error]', error);
     } else {
-      console.log('[PaymentMethod]', paymentMethod);
+      console.log('[PaymentMethod]', order);
     }
   };
 

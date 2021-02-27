@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import {Link} from 'react-router-dom'
 
-function Nav() {
+function Nav({ qty }) {
+
+    // useEffect(function() {
+    //   function getQty() {
+    //     const storageItems = JSON.parse(localStorage.getItem('quantity'));
+    //     console.log(storageItems)
+    //     setQty(storageItems.quantity);
+    //   }
+    //   getQty();
+    // }, []);
+
     return (
       <nav className="Nav">
         <h3>Logo</h3>
@@ -14,7 +24,7 @@ function Nav() {
             <li>Info</li>
           </Link>
           <Link to="/cart">
-            <li>Cart</li>
+            <li>Cart {qty}</li>
           </Link>
         </ul>
       </nav>

@@ -1,4 +1,4 @@
-const stripe = require('stripe')(process.env.REACT_APP_STRIPE_SECRET_KEY)
+const stripe = require('stripe')('sk_test_51IIpDBDhRieDnekpjaUVsfGT6H17pDM4YdJkvbRb3bGcxB4s2f5EZkMtV6sK0osG5XN2Fjpn1EcxWWeLb54vbUam00KtQKUDjB')
 
 async function postCharge(req, res) {
   try {

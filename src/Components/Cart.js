@@ -2,59 +2,87 @@ import React, { useState, useEffect } from 'react';
 import './../App.css';
 import * as ReactBootStrap from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+/// import getQuantity from '../helpers/getQuantity';
+/// import getTotal from '../helpers/getTotal';
+import { getQuantity, getTotal } from '../helpers/helperTools';
 
-function Cart() {
+
+function Cart({ setQty: setParentQty }) {
     const [products, setProducts] = useState([]);
+    // const [qty, setQty] = useState(localQuantity);
+    // const localQuantity = JSON.parse(localStorage.getItem('quantity'));
+
+    console.log("SSSSS", products)
+
+    function updateQty(products){
+        /* var holder = 0;
+        products.forEach((a, b) => {
+          holder = holder + a.quantity
+        })*/
+        // setQty({quantity: holder})
+        // localStorage.setItem('quantity', JSON.stringify({ quantity: newQty }))
+        setParentQty({ quantity: getQuantity(products) });
+      }
 
     useEffect(function() {
       const storageItems = JSON.parse(localStorage.getItem('product'));
-      setProducts(storageItems || []);
+      const products = storageItems || [];
+      setProducts(products);
+      updateQty(products);
     }, []);
 
-    function totalPrice(storageItems, stringToIntTotal){
-      const totalPriceHolder = []
-      storageItems.map((a, index) => {
-        const totalPrice = a.price * a.quantity;
-        totalPriceHolder.push(parseInt(totalPrice, 10))
-      })
-       const totalPriceReduce = totalPriceHolder.reduce((a, b) => a + b, 0).toFixed(2);
-       return totalPriceReduce
-    }
+    // useEffect(function() {
+    //   // updateQty(products);
+    // }, [products]);
 
     function decreaseQuantity(index) {
       if (products[index]){
-        setProducts(products.map((a, b) => {
-            if (b === index) return {...a, quantity: a.quantity - 1}
-            else return a
-          }));
-          products[index].quantity = products[index].quantity - 1;
-          localStorage.setItem('product', JSON.stringify(products))
+        const newProducts = products.map((a, b) => {
+          if (b === index) return {...a, quantity: a.quantity - 1}
+          else return a
+        });
+
+        setProducts(newProducts);
+        localStorage.setItem('product', JSON.stringify(newProducts))
+        updateQty(newProducts)
       }
     }
 
+    // Try to reduce the amount of code by creating more specific functions
+    // that could take some argumnents to do slightly different things
+    // make reusable functions/code! d
+    // function saveProducts(products) {
+    //   // ...
+    //   localStorage.setItem('product', JSON.stringify(products))
+    // }
+
     function increaseQuantity(index) {
-          if (products[index]){
-            setProducts(
-              products.map((a, b) => {
-                if (b === index) return {...a, quantity: a.quantity + 1}
-                else return a
-              })
-            )
-            products[index].quantity = products[index].quantity + 1;
-            localStorage.setItem('product', JSON.stringify(products))
-          }
+        if (!products[index]) return;
+
+        const newProducts = products.map((a, b) => {
+          if (b === index) return {...a, quantity: a.quantity + 1}
+          else return a
+        })
+
+        setProducts(newProducts)
+        localStorage.setItem('product', JSON.stringify(newProducts))
+        updateQty(newProducts);
     }
 
     function removeItem(index){
-      if (products[index]){
-        setProducts(
-          products.slice(0, index)
-        );
-        localStorage.setItem('product', JSON.stringify(products.slice(0, index)))
-      }
+      const product = products[index];
+
+      if (!product) return;
+
+      const newProducts = products.filter((v, z) => z !== index);
+      setProducts(newProducts);
+
+      localStorage.setItem('product', JSON.stringify(newProducts));
+
+      updateQty(newProducts);
     }
 
-     if (products.length === 0){
+     if (products.length === 0) {
        return (
          <div className="App">
           <p>
@@ -89,7 +117,7 @@ function Cart() {
           </div>
         ))}
 
-        <p>Total Price: ${totalPrice(products)}</p>
+        <p>Total Price: ${getTotal(products)}</p>
         <Link to={`/Checkout`}>
           <button>Proceed to checkout</button>
         </Link>
