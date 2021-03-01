@@ -24,7 +24,7 @@ const CheckoutForm = ({backStep}) => {
     const { error, token } = await stripe.createToken(cardElement);
 
     const order = await axios.post('http://localhost:7000/api/stripe/charge', {
-      amount: 200,
+      amount: 1000,
       source: token.id,
       receipt_email: 'customer@example.com',
     });

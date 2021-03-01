@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './../App.css';
 import * as ReactBootStrap from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-/// import getQuantity from '../helpers/getQuantity';
-/// import getTotal from '../helpers/getTotal';
 import { getQuantity, getTotal } from '../helpers/helperTools';
 
 
 function Cart({ setQty: setParentQty }) {
     const [products, setProducts] = useState([]);
-    // const [qty, setQty] = useState(localQuantity);
-    // const localQuantity = JSON.parse(localStorage.getItem('quantity'));
 
     console.log("SSSSS", products)
 
@@ -30,10 +26,6 @@ function Cart({ setQty: setParentQty }) {
       setProducts(products);
       updateQty(products);
     }, []);
-
-    // useEffect(function() {
-    //   // updateQty(products);
-    // }, [products]);
 
     function decreaseQuantity(index) {
       if (products[index]){

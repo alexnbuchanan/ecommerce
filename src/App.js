@@ -7,7 +7,7 @@ import Cart from './Components/Cart';
 import Item from './Components/Item';
 import Checkout from './Components/CheckoutForm/Checkout';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import getQuantity from './helpers/getQuantity';
+import { getQuantity } from './helpers/helperTools';
 
 function App() {
     const storageItems = JSON.parse(localStorage.getItem('product'));
