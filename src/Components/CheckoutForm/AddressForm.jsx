@@ -17,7 +17,7 @@ function AddressForm({next}) {
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit((data) => next({...data, shippingCountry, shippingState}))}>
             <Grid container spacing={3}>
-              <FormInput required name='firstName' label='First name'/>
+              <FormInput required name='firstName' label='First name' />
               <FormInput required name='lastName' label='Last Name'/>
               <FormInput required name='address1' label='Address'/>
               <FormInput required name='email' label='Email'/>
@@ -33,7 +33,7 @@ function AddressForm({next}) {
                     <MenuItem value="">
                       <br/>
                     </MenuItem>
-                    <MenuItem value={1}>
+                    <MenuItem value="USA">
                       USA
                     </MenuItem>
                 </Select>

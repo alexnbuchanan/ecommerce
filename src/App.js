@@ -30,7 +30,7 @@ function App() {
           <Route path="/Info" component={Info} />
           <Route path="/Cart/" render={(props) => <Cart {...props} setQty={setQty} />} />
           <Route path="/Item/:item" component={Item} />
-          <Route path="/Checkout" component={Checkout} />
+          <Route path="/Checkout" render={(props) => <Checkout {...props} setQty={setQty} />} />
 
         </div>
       </Router>

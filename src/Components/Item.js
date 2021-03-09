@@ -44,6 +44,7 @@ function Item(props) {
     if (!duplicate){itemData.push(obj)}
     saveProducts(itemData);
     duplicate = false
+
   }
 
   useEffect(() => {
