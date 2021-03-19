@@ -104,7 +104,7 @@ function Cart({ setQty: setParentQty }) {
               >+</button>
             </div>
               <button type="button"
-              onClick={() => removeItem(index)}>
+                onClick={() => removeItem(index)}>
               Remove</button>
           </div>
         ))}

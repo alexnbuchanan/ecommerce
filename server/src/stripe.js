@@ -18,7 +18,7 @@ async function postCharge(req, res) {
         email: receipt_email,
         source,
         name: customerName,
-        address,cd
+        address
       });
     }
 
