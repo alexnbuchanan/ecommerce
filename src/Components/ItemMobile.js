@@ -55,35 +55,30 @@ function Item(props) {
 
     const useStyles = makeStyles((theme) => ({
         cardStyle: {
-          margin: 'auto'
+        margin: 'auto'
     },
         media: {
-          width: '60%',
-          margin: 'auto'
+        width: '60%',
+                margin: 'auto'
     },
         buttonStyle: {
-          marginTop: 20,
-          backgroundColor: 'black',
-          color: '#fff',
-          '&:hover': {
-            backgroundColor: '#666666'
-  }}
-
-
+        background: 'black',
+        marginTop: 20,
+        color: 'white'
+},
     }));
 
     const classes = useStyles();
 
     const theme = useTheme();
-    const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
+    const isMatch = useMediaQuery(theme.breakpoints.down('xs'));
 
     return (
       <div className="App">
           {loading ?
                       (
-
         <Container maxWidth={false} style={{marginTop: '20px'}}>
-                      <Grid item sm={isMatch ? 11 : 3} className={classes.cardStyle}>
+                      <Grid item xs={12} className={classes.cardStyle}>
                         <Card key={itemId}>
                           <CardContent >
                           <CardMedia
@@ -106,7 +101,7 @@ function Item(props) {
                             </ButtonGroup>
                             </div>
 
-                            <Link to={`/Cart/`} style={{ textDecoration: 'none' }}>
+                            <Link to={`/Cart/`}>
                               <Button onClick={() => saveProduct(product)} type="button" className={classes.buttonStyle} >
                                 Add to shopping cart ${cost}
                               </Button>

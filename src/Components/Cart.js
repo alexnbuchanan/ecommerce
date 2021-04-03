@@ -3,20 +3,47 @@ import './../App.css';
 import * as ReactBootStrap from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { getQuantity, getTotal } from '../helpers/helperTools';
+import {Grid, Typography,useMediaQuery, useTheme, Container, Button, ButtonGroup, Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  cartEmptyStyle: {
+    marginTop: '50px'
+  },
+    continueShopping: {
+      color: 'black'
+},
+    productImage: {
+      width: '5em'
+},
+    removeButton: {
+      color: '#808080',
+      fontSize: '.8rem'
+},
+    totalPrice: {
+      textAlign: "right",
+      padding: '16px',
+      fontWeight: 'bold'
+},
+    totalCheckoutButton: {
+      height: '5em',
+      backgroundColor: 'black',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#666666'
+}
+}}))
+
 
 
 function Cart({ setQty: setParentQty }) {
+    const theme = useTheme();
+    const isMatch = useMediaQuery(theme.breakpoints.down('xs'));
+
+    const classes = useStyles();
     const [products, setProducts] = useState([]);
 
-    console.log("SSSSS", products)
-
     function updateQty(products){
-        /* var holder = 0;
-        products.forEach((a, b) => {
-          holder = holder + a.quantity
-        })*/
-        // setQty({quantity: holder})
-        // localStorage.setItem('quantity', JSON.stringify({ quantity: newQty }))
         setParentQty({ quantity: getQuantity(products) });
       }
 
@@ -39,14 +66,6 @@ function Cart({ setQty: setParentQty }) {
         updateQty(newProducts)
       }
     }
-
-    // Try to reduce the amount of code by creating more specific functions
-    // that could take some argumnents to do slightly different things
-    // make reusable functions/code! d
-    // function saveProducts(products) {
-    //   // ...
-    //   localStorage.setItem('product', JSON.stringify(products))
-    // }
 
     function increaseQuantity(index) {
         if (!products[index]) return;
@@ -76,46 +95,115 @@ function Cart({ setQty: setParentQty }) {
 
      if (products.length === 0) {
        return (
-         <div className="App">
-          <p>
-            Cart Empty
-          </p>
-          <Link to={`/`}>
-          <p>Continue shopping</p>
-          </Link>
+         <div className={classes.cartEmptyStyle}>
+            <Typography>
+              Cart Empty
+            </Typography>
+
+            <Box m={2}>
+              <Link to={`/`} style={{ textDecoration: 'underline', textDecorationColor: 'black' }}>
+                <Typography variant="title" className={classes.continueShopping}>
+                    Continue shopping
+                </Typography>
+              </Link>
+            </Box>
+
          </div>)
      }
 
     return (
       <div className="App">
         {products.map((item, index) => (
-          <div key={item.id}>
-            <p>{item.title}</p>
-            <img src={item.image} className="productImage"></img>
-            <p>${(item.quantity * item.price).toFixed(2)}</p>
+          <Grid container>
+                <Grid item xs={isMatch ? 0 : 3} />
+                <Grid item xs={isMatch ? 12 : 6} >
 
-            <div className="quantity">
-              <button className="btn minus-btn" type="button"
-                onClick={item.quantity > 1 ? () => decreaseQuantity(index) : null}
-              >-</button>
-              <input type="text" id={item.id} placeholder={item.quantity}/>
-              <button className="btn plus-btn" type="button"
-                onClick={() => increaseQuantity(index)}
-              >+</button>
-            </div>
-              <button type="button"
-                onClick={() => removeItem(index)}>
-              Remove</button>
-          </div>
+          <TableContainer>
+            <Table aria-label="simple table">
+              <colgroup>
+                <col width="20%" />
+                <col width="20%" />
+                <col width="5%" />
+                <col width="5%" />
+                <col width="5%" />
+              </colgroup>
+              <TableBody>
+
+                  <TableRow>
+                    <TableCell align="center">
+                      <img src={require(`../images/${item.image}`)} className={classes.productImage}>
+                      </img>
+                    </TableCell>
+                    <TableCell align="left">
+                      <Typography>
+                        {item.title}
+                      </Typography>
+                    </TableCell>
+                    <TableCell align="center">
+                      <ButtonGroup size="small">
+                        <Button
+                          type="button"
+                          onClick={
+                            item.quantity > 1 ? () => decreaseQuantity(index) : null
+                          }
+                        >
+                          -
+                        </Button>
+                        <Button>{item.quantity}</Button>
+                        <Button type="button" onClick={() => increaseQuantity(index)}>
+                          +
+                        </Button>
+                      </ButtonGroup>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Button onClick={() => removeItem(index)} className={classes.removeButton}>
+                        Remove
+                      </Button>
+                    </TableCell>
+                    <TableCell align="center">
+                      <Typography style={{ fontWeight: "bold"}}>
+                        ${(item.quantity * item.price).toFixed(2)}
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+              </TableBody>
+            </Table>
+
+          </TableContainer>
+                </Grid>
+                <Grid item xs={isMatch ? 0 : 3} />
+                </Grid>
+
         ))}
 
-        <p>Total Price: ${getTotal(products)}</p>
-        <Link to={`/Checkout`}>
-          <button>Proceed to checkout</button>
-        </Link>
-        <Link to={`/`}>
-          <p>Continue shopping</p>
-        </Link>
+        <Grid container>
+              <Grid item xs={isMatch ? 0 : 3} />
+
+              <Grid item xs={isMatch ? 12 : 6} >
+                <Typography className={classes.totalPrice}>
+                  Total Price: ${getTotal(products)}
+                </Typography>
+
+                <Link to={`/Checkout`} style={{ textDecoration: 'none' }}>
+                  <Button fullWidth className={classes.totalCheckoutButton}>
+                      Proceed to checkout
+                  </Button>
+                </Link>
+
+                <Box m={2}>
+                  <Link to={`/`} style={{ textDecoration: 'underline', textDecorationColor: 'black' }}>
+                    <Typography variant="title" className={classes.continueShopping}>
+                        Continue shopping
+                    </Typography>
+                  </Link>
+                </Box>
+              </Grid>
+
+              <Grid item xs={isMatch ? 0 : 3} />
+
+        </Grid>
+
+
       </div>
 
     );

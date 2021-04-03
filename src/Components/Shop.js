@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './../App.css';
 import * as ReactBootStrap from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import {Grid, Paper, CssBaseline, Button, Typography, useMediaQuery, useTheme} from '@material-ui/core';
+import {Grid, Paper, CssBaseline, Button, Typography, useMediaQuery, useTheme, Card, CardContent, CardMedia, Container} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
-import TopMenu from './TopMenu';
+import ShopMobile from './ShopMobile';
 
 function Shop() {
 
@@ -19,11 +19,13 @@ useEffect(async () => {
 }, [])
 
 const fetchItems = async () => {
-  const data = await fetch('https://fakestoreapi.com/products');
+  const data = await fetch('http://localhost:8000/items');
   const items = await data.json();
   setProducts(items)
   setLoading(true)
 }
+
+// Notes: (from alex) json-server --watch db.json --port 8000
 
 function priceUSD(change){
   return change.toFixed(2)
@@ -53,76 +55,30 @@ const useStyles = makeStyles((theme) => ({
 },
     buttonFont: {
     fontSize: 12
+},
+    cardText: {
+    fontSize: 14,
+    textAlign: 'left',
+    color: 'black'
 }
 }));
-
-// const TopMenu = () => {
-//   const [clicked, setClick] = useState(false)
-//   const toggleClick = () => setClick(clicked => !clicked);
-//   return (
-//     <Typography>
-//       <Button onClick={toggleClick} className={classes.buttonFont}>
-//         All items
-//       </Button>
-//
-//     {clicked ? (
-//       <div>
-//         <Button onClick={() => setItem("men clothing")} className={classes.buttonFont} >
-//           Men clothing
-//         </Button><br/>
-//         <Button onClick={() => setItem("women clothing")} className={classes.buttonFont} >
-//           Women clothing
-//         </Button><br/>
-//         <Button onClick={() => setItem("jewelery")} className={classes.buttonFont} >
-//           Jewelery
-//         </Button><br/>
-//         <Button onClick={() => setItem("electronics")} className={classes.buttonFont} >
-//           Electronics
-//         </Button>
-//       </div>
-//     ) : null}
-//   </Typography>
-//   );
-// }
-
-const BottomMenu = () => {
-  const [clicked, setClick] = useState(false)
-  const toggleClick = () => setClick(clicked => !clicked);
-  return (
-    <Typography>
-      <Button onClick={toggleClick} className={classes.buttonFont}>
-        Sort by Price
-      </Button>
-
-    {clicked ? (
-      <div>
-        <Button onClick={() => setCurrentSort('DESC')} className={classes.buttonFont}>
-          Highest
-        </Button><br/>
-        <Button onClick={() => setCurrentSort('ASE')} className={classes.buttonFont}>
-          Lowest
-        </Button><br/>
-      </div>
-    ) : null}
-  </Typography>
-  );
-}
 
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down('xs'));
 
   const classes = useStyles();
+
     return (
-        <div>
+      isMatch ? <ShopMobile />:  <div>
          <CssBaseline />
-           <Grid container spacing={1} direction="column">
+           <Grid container spacing={1} direction="column" >
             <Grid item xs={12} container>
 
                 <Grid item xs={3} />
 
                 <Grid item xs={6} >
                   <Typography>
-                    {isMatch ? <TopMenu setItem={setItem} />  : (
+                    {(
                       <div>
                         <Button onClick={() => setItem("")} className={classes.buttonFont} >
                           All items
@@ -151,7 +107,7 @@ const BottomMenu = () => {
             <Grid item xs={3} />
             <Grid item xs={6} >
               <Typography>
-                {isMatch ? <BottomMenu /> : (
+                {(
                   <div>
                     <Button onClick={() => setCurrentSort('DESC')} className={classes.buttonFont}>
                       Highest
@@ -166,20 +122,43 @@ const BottomMenu = () => {
            <Grid item xs={3} />
             </Grid>
            </Grid>
-              <div className="gridContainer">
+
                 {loading ?
-                            (filterProducts.map((a, index) => (
-                              <Link to={`/Item/${a.id}`}>
-                                <div key={index} className="productStyle">
-                                  <img src={a.image} className="productImage"></img>
-                                  <p>{a.title}</p>
-                                  <p>${priceUSD(a.price)}</p>
-                                </div>
-                              </Link>
-                          )))  : (<ReactBootStrap.Spinner className="spinner" animation="border" />)
+
+        <Container maxWidth={false} style={{marginTop: '10px'}}>
+              <Grid
+              container
+                spacing={3}
+                >
+
+                {filterProducts.map((a, index) => (
+                                        <Grid item xs={3}>
+                                          <Card>
+                                            <CardContent >
+                                                <Link to={`/Item/${a.id}`} style={{ textDecoration: 'none' }}>
+                                                  <div key={index} className="productStyle">
+                                                    <CardMedia
+                                                      component="img"
+                                                      image={require(`../images/${a.image}`)}
+                                                     />
+                                                    <Typography className={classes.cardText}>
+                                                      <div>{a.title}</div>
+                                                      <div>${priceUSD(a.price)}</div>
+                                                    </Typography>
+                                                  </div>
+                                                </Link>
+                                            </CardContent>
+                                          </Card>
+                                      </Grid>
+
+                                  )) }
+                                    </Grid>
+        </Container>
+                          : (<ReactBootStrap.Spinner className="spinner" animation="border" />)
                           }
-              </div>
-        </div>
+      </div>
+
+
     )
 }
 
