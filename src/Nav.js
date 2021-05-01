@@ -31,7 +31,7 @@ function Nav({ qty }) {
 
                       <Grid item xs={7} md={3} >
                         <Typography>
-                          <Button to={'/'} component={Link} className={classes.buttonFont}>
+                          <Button to={'/shop'} component={Link} className={classes.buttonFont}>
                             Shop
                           </Button>
 

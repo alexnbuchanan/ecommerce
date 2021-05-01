@@ -5,6 +5,7 @@ import Shop from './Components/Shop';
 import Info from './Components/Info';
 import Cart from './Components/Cart';
 import Item from './Components/Item';
+import Homepage from './Components/Homepage';
 import Checkout from './Components/CheckoutForm/Checkout';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { getQuantity } from './helpers/helperTools';
@@ -26,7 +27,8 @@ function App() {
         <div className="App">
           <Nav qty={qty.quantity} />
 
-          <Route path="/" exact component={Shop} />
+          <Route path="/" exact component={Homepage} />         
+          <Route path="/Shop" exact component={Shop} />
           <Route path="/Info" component={Info} />
           <Route path="/Cart/" render={(props) => <Cart {...props} setQty={setQty} />} />
           <Route path="/Item/:item" component={Item} />

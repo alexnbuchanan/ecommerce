@@ -34,7 +34,6 @@ function Info() {
 
             <Paper className={classes.paperStyle}>
               <CardMedia
-               className={classes.media}
                 component="img"
                 image={require(`../images/storeImage.jpg`)}
                />

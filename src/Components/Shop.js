@@ -25,7 +25,7 @@ const fetchItems = async () => {
   setLoading(true)
 }
 
-// Notes: (from alex) json-server --watch db.json --port 8000
+// Notes: (from ecomm/ecomm) json-server --watch db.json --port 8000
 
 function priceUSD(change){
   return change.toFixed(2)

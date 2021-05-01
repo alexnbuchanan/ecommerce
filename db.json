@@ -1,19 +1,168 @@
+
 {
-  "posts": [
-    {
+
+  "items": [{
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "title": "T-Shirt Black",
+      "price": 49.99,
+      "description": "Oversized fit tee with a relaxed neck and slightly longer than average length. This tee is designed with recycled cotton and features a vintage-inspired blind stitch detail at the neck, sleeves, and hem. Ribbed neck.",
+      "category": "men clothing",
+      "image": "M_Uni_Tee_Black.jpg"
+    },
+  
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
+      "id": 2,
+      "title": "T-Shirt Ceramic",
+      "price": 49.99,
+      "description": "Relaxed fit tee with unfinished edges and a hem that is cut slightly longer in front than back. This tee is designed with midweight recycled cotton for slightly textured fabric.",
+      "category": "men clothing",
+      "image": "M_Uni_Tee_Ceramic.jpg"
+    },
+  
+    {
+      "id": 3,
+      "title": "T-Shirt Grey",
+      "price": 49.99,
+      "description": "Oversized fit tee with a relaxed neck and slightly longer than average length. This tee is designed with recycled cotton and features a vintage-inspired blind stitch detail at the neck, sleeves, and hem. Ribbed neck.",
+      "category": "men clothing",
+      "image": "M_Uni_Tee_Grey.jpg"
+    },
+  
+    {
+      "id": 4,
+      "title": "T-Shirt Twilight",
+      "price": 49.99,
+      "description": "Oversized fit tee with a relaxed neck and slightly longer than average length. This tee is designed with recycled cotton and features a vintage-inspired blind stitch detail at the neck, sleeves, and hem. Ribbed neck.",
+      "category": "men clothing",
+      "image": "M_Uni_Tee_Twilight.jpg"
+    },
+    
+    {
+      "id": 5,
+      "title": "Beach Hoodie Black",
+      "price": 99.99,
+      "description": "Relaxed fit hoodie with a dropped shoulder fit in custom knit French terry. Kangaroo pockets at the waist, drawstring closure at the hood. Rib knit waist and cuffs.",
+      "category": "men clothing",
+      "image": "M_Hoodie_Black.jpg"
+    },
+    
+    {
+      "id": 6,
+      "title": "Beach Hoodie Blue",
+      "price": 99.99,
+      "description": "Relaxed fit hoodie with a dropped shoulder fit in custom knit French terry. Kangaroo pockets at the waist, drawstring closure at the hood. Rib knit waist and cuffs.",
+      "category": "men clothing",
+      "image": "M_Hoodie_Blue.jpg"
+    },
+    
+    {
+      "id": 7,
+      "title": "Beach Hoodie Yellow",
+      "price": 99.99,
+      "description": "Relaxed fit hoodie with a dropped shoulder fit in custom knit French terry. Kangaroo pockets at the waist, drawstring closure at the hood. Rib knit waist and cuffs.",
+      "category": "men clothing",
+      "image": "M_Hoodie_Yellow.jpg"
+    },
+  
+    {
+      "id": 8,
+      "title": "Foggy Wool Sweater",
+      "price": 119.99,
+      "description": "Soft cashmere blend crewneck sweater in a slim silhouette. The knit has been brushed resulting in a washed down, foggy yarn texture.",
+      "category": "men clothing",
+      "image": "M_Sweater_Charcoal.jpg"
+    },
+  
+    {
+      "id": 9,
+      "title": "T-Shirt White",
+      "price": 49.99,
+      "description": "Oversized fit tee with a relaxed neck and slightly longer than average length. This tee is designed with recycled cotton and features a vintage-inspired blind stitch detail at the neck, sleeves, and hem.",
+      "category": "women clothing",
+      "image": "W_Uni_Tee_White.jpg"
+    },
+  
+    {
+      "id": 10,
+      "title": "T-Shirt Superbloom",
+      "price": 49.99,
+      "description": "Oversized fit tee with a relaxed neck and slightly longer than average length. This tee is designed with recycled cotton and features a vintage-inspired blind stitch detail at the neck, sleeves, and hem.",
+      "category": "women clothing",
+      "image": "W_Uni_Tee_Superbloom.jpg"
+    },
+  
+    {
+      "id": 11,
+      "title": "Hoodie White",
+      "price": 99.99,
+      "description": "Relaxed fit hoodie with a dropped shoulder fit. Crafted from custom knit French terry fused with soft cashmere yarns. Features fleeced loop yarns on the inside for a cozy hand feel. Rib knit waist and cuffs.",
+      "category": "women clothing",
+      "image": "W_Hoodie_White.jpg"
+    },
+  
+    {
+      "id": 12,
+      "title": "Longsleeve T-Shirt White",
+      "price": 79.99,
+      "description": "Oversized long sleeve tee with a relaxed neck and slightly longer than average length. This tee is designed with recycled cotton and features a vintage-inspired blind stitch detail at the neck, sleeves, and hem. Ribbed neck and cuffs.",
+      "category": "women clothing",
+      "image": "W_Uni_Long_Tee_White.jpg"
+    },
+  
+    {
+      "id": 13,
+      "title": "Fullzip Hoodie Grey",
+      "price": 89.99,
+      "description": "Relaxed fit stand collar hoodie with Riri zip closure at the front. Kangaroo pocket at the waist, drawstring closure at the hood. Rib knit waist and cuffs. This hoodie features custom knit French terry with flatlock stitch details.",
+      "category": "women clothing",
+      "image": "W_Zip_Grey.jpg"
+    },
+  
+    {
+      "id": 14,
+      "title": "X M.A.R.S Pendant Necklace",
+      "price": 999.99,
+      "description": "JE X M.A.R.S collaboration necklace in 18 karat yellow gold with pendant charm in black onyx. Curb chain with John Elliott plaque at adjustable lobster clasp fastening. Approx. 19.5” length with adjuster function at 18”. 10.25” drop.",
+      "category": "jewelery",
+      "image": "Jewelry_Mars_Onyx_Necklace.jpg"
+    },
+  
+    {
+      "id": 15,
+      "title": "X M.A.R.S Cross Pendant Necklace",
+      "price": 1050.99,
+      "description": "JE x M.A.R.S collaboration necklace in 18 karat yellow gold with solid gold cross pendant. The cross design on this necklace features a wave-shaped wrap inspired by Art Deco architecture. Curb chain with John Elliott plaque at adjustable lobster clasp fastening. Approx. 19.5” length with adjuster function at 18”. 10.5” drop.",
+      "category": "jewelery",
+      "image": "Jewelry_Cross_Necklace.jpg"
+    },
+  
+    {
+      "id": 16,
+      "title": "X M.A.R.S Beaded Necklace",
+      "price": 899.99,
+      "description": "M.A.R.S collaboration beaded necklace in 100% turquoise. Approx. 20.5” length. 10.5” drop.",
+      "category": "jewelery",
+      "image": "Jewelry_Turquoise_Necklace.jpg"
+    },
+  
+    {
+      "id": 17,
+      "title": "Apple HomePod mini Smart Speaker",
+      "price": 99.99,
+      "description": "The palm-sized Apple HomePod mini smart speaker is also a convenient HomeKit hub. The sub-$100 gadget allows users to control a number of smart home products with Siri voice commands or directly from an Apple device. It is available in white or space gray.",
+      "category": "electronics",
+      "image": "Elec_Apple_HomePod_Speaker.jpg"
+    },
+  
+    {
+      "id": 18,
+      "title": "Soundcore Life Q30 Wireless Headphones by Anker",
+      "price": 79.99,
+      "description": "The Soundcore Life Q30 wireless noise-canceling headphones by Anker are one of the best under $100. The over-ear cans have an elegant design, a comfy fit, impressive sound quality, sophisticated noise cancellation, and up to 30 hours of battery life.",
+      "category": "electronics",
+      "image": "Elec_Soundcore_Headphones_Anker.jpg"
+    }		
+    
+  ]
+  
   }
-}
