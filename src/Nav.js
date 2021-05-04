@@ -11,21 +11,17 @@ function Nav({ qty }) {
   const classes = useStyles();
     return (
         <div>
-
-
             <CssBaseline />
 
             <AppBar position="relative" elevation={0}>
 
-
                 <Toolbar className={classes.navBar}>
                   <Grid container>
                       <Grid item xs={4} md={2}>
-                        <Typography className={classes.logo}>
-                          Logo
-                        </Typography>
+                          <Button to={'/'} component={Link} className={classes.buttonFont}>
+                            Logo
+                          </Button>
                       </Grid>
-
 
                       <Grid item xs={1} md={7} />
 
