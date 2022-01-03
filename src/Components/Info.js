@@ -12,6 +12,9 @@ import {makeStyles} from '@material-ui/core/styles';
           margin: 'auto',
           marginTop: '20px'
     },
+        cardText: {
+          fontSize: 12
+    },
         paperStyle: {
           padding: '30px'
         },

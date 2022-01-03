@@ -55,11 +55,15 @@ function Item(props) {
 
     const useStyles = makeStyles((theme) => ({
         cardStyle: {
-        margin: 'auto'
+        margin: 'auto',
+        fontWeight: 500
+    },
+        cardText: {
+          fontSize: 12
     },
         media: {
         width: '60%',
-                margin: 'auto'
+        margin: 'auto'
     },
         buttonStyle: {
         background: 'black',
@@ -87,8 +91,8 @@ function Item(props) {
                             image={require(`../images/${product.image}`)}
                           />
                           <Typography>
-                            <p>{product.title}</p>
-                            <p>{product.description}</p>
+                            <p className={classes.cardStyle}>{product.title}</p>
+                            <p className={classes.cardText}>{product.description}</p>
                             <p>${priceUSD(product.price)}</p>
                           </Typography>
 
