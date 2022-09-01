@@ -21,7 +21,7 @@
     "react-dom": "^17.0.1",
     "react-hook-form": "^6.15.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "1.1.5",
+    "react-scripts": "2.1.8",
     "react-stripe-checkout": "^2.6.3",
     "react-stripe-elements": "^6.1.2",
     "stripe": "^8.135.0"
@@ -45,5 +45,11 @@
   "bugs": {
     "url": "https://github.com/alexnbuchanan/ecommerce/issues"
   },
-  "homepage": "https://github.com/alexnbuchanan/ecommerce#readme"
+  "homepage": "https://github.com/alexnbuchanan/ecommerce#readme",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

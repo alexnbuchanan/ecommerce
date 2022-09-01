@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import "./../App.css";
 import {
   Grid,
@@ -11,9 +12,9 @@ import {
   Button,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Link } from "react-router-dom";
+
+import { gsap, ScrollTrigger } from "gsap/all";
+
 import HomepageMobile from "./HomepageMobile";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -61,35 +62,35 @@ function Homepage() {
       opacity: 0,
       x: -80,
       duration: 3.3,
-    }),
-      gsap.from(animeRef1.current, {
-        duration: 1.9,
-        opacity: 0,
-        y: -30,
-      }),
-      gsap.from(animeRef2.current, {
-        duration: 2.3,
-        opacity: 0,
-        y: -20,
-      }),
-      gsap.from(textRef2.current, {
-        opacity: 0,
-        x: -80,
-        duration: 3,
-        scrollTrigger: {
-          trigger: textRef2.current,
-          start: "top center",
-        },
-      }),
-      gsap.from(animeRef3.current, {
-        duration: 1.9,
-        opacity: 0,
-        y: -20,
-        scrollTrigger: {
-          trigger: animeRef3.current,
-          start: "top center",
-        },
-      });
+    });
+    gsap.from(animeRef1.current, {
+      duration: 1.9,
+      opacity: 0,
+      y: -30,
+    });
+    gsap.from(animeRef2.current, {
+      duration: 2.3,
+      opacity: 0,
+      y: -20,
+    });
+    gsap.from(textRef2.current, {
+      opacity: 0,
+      x: -80,
+      duration: 3,
+      scrollTrigger: {
+        trigger: textRef2.current,
+        start: "top center",
+      },
+    });
+    gsap.from(animeRef3.current, {
+      duration: 1.9,
+      opacity: 0,
+      y: -20,
+      scrollTrigger: {
+        trigger: animeRef3.current,
+        start: "top center",
+      },
+    });
   }, []);
 
   const theme = useTheme();
